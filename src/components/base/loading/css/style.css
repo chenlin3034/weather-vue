@@ -1,0 +1,75 @@
+body {
+  background: #333;
+}
+
+a{ color: rgba(255, 255, 255, 0.6);outline: none;text-decoration: none;-webkit-transition: 0.2s;transition: 0.2s;}
+a:hover,a:focus{color:#74777b;text-decoration: none;}
+
+.svg-contain {
+  max-width: 150px;
+  margin: 20px;
+  width: 100%;
+}
+
+.line{
+  stroke-miterlimit: 10;
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+}
+
+
+.clear-sky-svg {
+  -webkit-animation: expand 0.8s alternate-reverse infinite;
+          animation: expand 0.8s alternate-reverse infinite;
+}
+.clear-sky-svg .sun {
+  fill: #E5D8BA;
+}
+.clear-sky-svg .line {
+  stroke: #E5D8BA;
+  stroke-dasharray: 7;
+  -webkit-animation: dash 0.8s alternate-reverse infinite, fadeIn 1s forwards;
+          animation: dash 0.8s alternate-reverse infinite, fadeIn 1s forwards;
+}
+.clear-sky-svg .line-1,
+.clear-sky-svg .line-3,
+.clear-sky-svg .line-5,
+.clear-sky-svg .line-7,
+.clear-sky-svg .line-4 {
+  stroke-dashoffset: 5;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.clear-sky-svg .line-2,
+.clear-sky-svg .line-6,
+.clear-sky-svg .line-8 {
+  stroke-dashoffset: -5;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

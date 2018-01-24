@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>平滑折线图</title>
+  <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;}</style>
+</head>
+<body>
+<div style="width:600px; height:500px; margin: 0 auto;">
+  <canvas id="c1" width="600" height="400" ></canvas>
+</div>
+<script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/f2/3.0.1/f2.js"></script>
+<script>
+  F2.Global.pixelRatio = window.devicePixelRatio;
+  const canvas = document.getElementById('c1');
+
+  const w = [
+      {date: '01/14', tmp_max: 12, tmp_min: -2},
+      {date: '01/15', tmp_max: 18, tmp_min: 1},
+      {date: '01/16', tmp_max: 9, tmp_min: -2},
+      {date: '01/17', tmp_max: 10, tmp_min: 0},
+      {date: '01/18', tmp_max: 6, tmp_min: -2},
+      {date: '01/19', tmp_max: 12, tmp_min: -2},
+      {date: '01/20', tmp_max: 8, tmp_min: -3}
+    ];
+
+  const data = [
+    {x: 0, y: 12},
+    {x: 100, y: 8},
+    {x: 200, y: 9},
+    {x: 300, y: 10},
+    {x: 400, y: 6},
+    {x: 500, y: 12},
+    {x: 600, y: 8}
+  ];
+
+  const dataX = [
+    {x: 0, y: -20},
+    {x: 100, y: 10},
+    {x: 200, y: -20},
+    {x: 300, y: 0},
+    {x: 400, y: -20},
+    {x: 500, y: -20},
+    {x: 600, y: -30}
+  ]
+
+//  F2.Graphic.drawSmooth(data, canvas, {
+//    stroke: 'red',
+//    lineWidth: 1
+//  });
+//
+  const chart = new F2.Chart({
+    el: canvas,
+    width: 680,
+    height: 165,
+    padding: [ 20, 10, 50, 40 ]
+  });
+
+  const defs = {
+    date: {
+      tickCount: 7,
+      range: [ 0, 1 ]
+    },
+    tmp_max: {
+      tickCount: 7,
+      min: -10
+    }
+  };
+  chart.source(w);
+  F2.Shape.registerShape('line', 'triangle', {
+    getPoints(cfg) {},
+    draw(cfg, canvas) {}
+  });
+  chart.line().position('date*tmp_max').color('tmp_min').size(1).shape('circle');
+  chart.render();
+//  chart.source(dataX);
+//  chart.line().position('x*y').size(1).shape('smooth');
+//  chart.render();
+
+//  F2.Graphic.drawSmooth(data, canvas, {
+//    stroke: 'red',
+//    lineWidth: 1
+//  });
+//
+//  F2.Graphic.drawSmooth(dataX, canvas, {
+//    stroke: 'red',
+//    lineWidth: 1
+//  });
+</script>
+</body>
+</html>
